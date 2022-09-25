@@ -2,24 +2,19 @@ import React, { useState } from 'react';
 
 
 function App() {
-	const [name, setName] = useState({
+	const [formData, setFormData] = useState({
 		fname: '',
 		cname: '',
 
 	});
-	const onSubmits = (e) => {
-		e.preventDefault();
+	const onSubmit = (e) => {
+		e.preventDefault()
+		console.log(formData);
 	};
 	// InputEvent: handle text who written in form
 	const InputEvent = (e) => {
-		// console.log(e.target.value);
-		//console.log(e.target.placeholder);
-		// name use below in form and value is == text value
 		const { value, name } = e.target;
-
-
-		setName((preValue) => {
-			// console.log(preValue);
+		setFormData((preValue) => {
 			return {
 				...preValue,
 				[name]: value,
@@ -28,12 +23,12 @@ function App() {
 	};
 	return (
 		<>
-			<form onSubmit={onSubmits}>
+			<form onSubmit={onSubmit}>
 				<lable>Name : </lable>
 				<input type='text'
 					placeholder='Enter your name'
 					onChange={InputEvent}
-					value={name.fname}
+					value={formData.fname}
 					// name use for show in fields and use for InputEvent
 					name='fname'
 				/>
@@ -44,7 +39,7 @@ function App() {
 				<input type='text'
 					placeholder='Enter your company address'
 					onChange={InputEvent}
-					value={name.cname}
+					value={formData.cname}
 					name='cname'
 				/>
 				<button>Submit</button>
