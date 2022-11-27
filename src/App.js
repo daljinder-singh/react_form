@@ -7,6 +7,15 @@ function App() {
 		cname: '',
 
 	});
+	const [debouceData,setDebounceData] = useState('')
+
+	// debounce logic
+	const debounce = (val, nm) => {
+		let timerId = 2000;
+		clearTimeout(timerId);
+		setTimeout(() =>  setDebounceData(val), timerId)
+	}
+
 	const onSubmit = (e) => {
 		e.preventDefault()
 		console.log(formData);
@@ -14,6 +23,7 @@ function App() {
 	// InputEvent: handle text who written in form
 	const InputEvent = (e) => {
 		const { value, name } = e.target;
+		debounce(value, name)
 		setFormData((preValue) => {
 			return {
 				...preValue,
